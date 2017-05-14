@@ -1,0 +1,26 @@
+- hosts: localhost
+  tasks:
+    - name: keep touchpad enabled even when typing
+      blockinfile:
+        path: /etc/X11/xorg.conf.d/01-touchpad.conf
+        block: |
+          Section "InputClass"
+                  Identifier "libinput touchpad catchall"
+                  MatchIsTouchpad "on"
+                  MatchDevicePath "/dev/input/event*"
+                  Driver "libinput"
+                  Option "DisableWhileTyping" "false"
+          EndSection
+      become: true
+
+    - name: make capslock another ctrl key
+      blockinfile:
+        path: /etc/udev/hwdb.d/90-custom-keyboard.hwdb
+        block: |
+          evdev:atkbd:dmi:*
+           KEYBOARD_KEY_3a=leftctrl
+      become: true
+
+    - name: rebuild systemd hwdb
+      command: systemd-hwdb update
+      become: true
