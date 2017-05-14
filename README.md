@@ -13,3 +13,14 @@ To run:
 
     $ dnf install ansible
     $ ansible-playbook keyboard.yaml
+    
+Information sources:
+
+[Arch Wiki](https://wiki.archlinux.org/index.php/Map_scancodes_to_keycodes): CapsLock -> Ctrl 
+* indrect info: examples use other mappings
+
+
+
+[openSUSE Forum](https://forums.opensuse.org/showthread.php/521887-turn-off-disable-touchpad-while-typing?p=2805461#post2805461): Enable the trackpad while typing 
+* indrect info: post gives instructions to *disable* the trackpad while typing
+
